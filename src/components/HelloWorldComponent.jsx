@@ -1,4 +1,4 @@
-const HelloWorld = () => {
+const HelloWorldComponent = () => {
   return <h1>Hello world</h1>;
 };
 
@@ -8,4 +8,4 @@ const f3 = () => {};
 
 export { f1, f2, f3 };
 
-export default HelloWorld;
+export default HelloWorldComponent;
