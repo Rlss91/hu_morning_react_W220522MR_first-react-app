@@ -4,7 +4,7 @@ import HelloWorldComponent from "./components/HelloWorldComponent";
 import LoginPage from "./pages/LoginPage";
 import ConditionPage from "./pages/ConditionPage";
 import RegisterPage from "./pages/RegisterPage";
-import PanelPage from "./pages/PanelPage";
+import PanelPage from "./pages/PanelPage/PanelPage";
 
 const App = () => {
   return (

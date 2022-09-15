@@ -8,7 +8,6 @@ const LoginPage = () => {
   const handlePasswordInputChange = (ev) => {
     setPasswordInput(ev.target.value);
   };
-
   const handleSubmit = (ev) => {
     ev.preventDefault();
   };
