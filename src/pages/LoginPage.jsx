@@ -7,6 +7,12 @@ const LoginPage = () => {
   const handleUserInputChange = (ev) => {
     let newUserInput = JSON.parse(JSON.stringify(userInput)); //deep copy
     newUserInput[ev.target.id] = ev.target.value; //set new value dynamically
+    /*
+      id = email
+      newUserInput.email
+      id = password
+      newUserInput.password
+    */
     setUserInput(newUserInput); //update state
   };
 
