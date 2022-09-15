@@ -10,10 +10,10 @@ const App = () => {
   return (
     <div className="container">
       {/* <HelloWorldComponent /> */}
-      <RegisterPage />
+      {/* <RegisterPage /> */}
       {/* <LoginPage /> */}
       {/* <ConditionPage /> */}
-      {/* <PanelPage /> */}
+      <PanelPage />
     </div>
   );
 };

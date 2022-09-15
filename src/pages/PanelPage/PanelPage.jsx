@@ -1,4 +1,4 @@
-import { Fragment, useState } from "react";
+import { Fragment, useState, useEffect } from "react";
 import "./PanelPage.scss";
 
 const initialBizCardArray = [
@@ -18,13 +18,20 @@ const initialBizCardArray = [
 const PanelPage = () => {
   const [findInput, setFindInput] = useState("");
   const [bizCardArr, setBizCardArr] = useState(initialBizCardArray);
-  const handleFindInputChange = (ev) => {
-    setFindInput(ev.target.value);
-    let regex = new RegExp(ev.target.value, "i"); //create regex tamplate that will try to find the value and wil ignore case
+
+  useEffect(() => {
+    let regex = new RegExp(findInput, "i"); //create regex tamplate that will try to find the value and wil ignore case
     let bizCardArrCopy = JSON.parse(JSON.stringify(initialBizCardArray)); //cloneDeep
     // you cant change the array directly from the state, so we must do cloneDeep
     bizCardArrCopy = bizCardArrCopy.filter((item) => regex.test(item.name));
     setBizCardArr(bizCardArrCopy);
+  }, [findInput]);
+
+  const handleFindInputChange = (ev) => {
+    // setTimeout(() => {
+    //   setFindInput("1");
+    // }, 1000);
+    setFindInput(ev.target.value);
   };
   return (
     <Fragment>
@@ -40,8 +47,8 @@ const PanelPage = () => {
         <label htmlFor="floatingInput">Find</label>
       </div>
       <div className="row row-cols-1 row-cols-md-2 g-4">
-        {bizCardArr.map((item) => (
-          <div className="col">
+        {bizCardArr.map((item, idx) => (
+          <div className="col" key={"bizCards" + idx}>
             <div className="card">
               <img src={item.img} className="card-img-top" alt={item.name} />
               <div className="card-body">
