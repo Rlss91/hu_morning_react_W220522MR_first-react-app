@@ -1,22 +1,17 @@
 import { Fragment, useState } from "react";
 const RegisterPage = () => {
-  const [stateNameInput, setNameInput] = useState(""); //init state
-  const [lastNameInput, setLastNameInput] = useState(""); //init state
-  const [emailInput, setEmailInput] = useState(""); //init state
-  const [passwordInput, setPasswordInput] = useState(""); //init state
-  const handleNameInputChange = (ev) => {
-    //this function made for the onChange event
-    //!stateNameInput = ev.target.value;//dont do this ever!!!!!!!!!!!!!!
-    setNameInput(ev.target.value); //change the value of the state
-  };
-  const handleLastNameInputChange = (ev) => {
-    setLastNameInput(ev.target.value);
-  };
-  const handleEmailInputChange = (ev) => {
-    setEmailInput(ev.target.value);
-  };
-  const handlePasswordInputChange = (ev) => {
-    setPasswordInput(ev.target.value);
+  const [userInput, setUserInput] = useState({
+    nameInput: "",
+    lastNameInput: "",
+    emailInput: "",
+    passwordInput: "",
+  });
+  const handleUserInputChange = (ev) => {
+    let newUserInput = JSON.parse(JSON.stringify(userInput));
+    if (newUserInput.hasOwnProperty(ev.target.id)) {
+      newUserInput[ev.target.id] = ev.target.value;
+      setUserInput(newUserInput);
+    }
   };
   return (
     <Fragment>
@@ -27,8 +22,8 @@ const RegisterPage = () => {
           className="form-control"
           id="nameInput"
           placeholder="Name"
-          value={stateNameInput}
-          onChange={handleNameInputChange}
+          value={userInput.nameInput}
+          onChange={handleUserInputChange}
         />
         <label htmlFor="nameInput">Name</label>
       </div>
@@ -38,10 +33,8 @@ const RegisterPage = () => {
           className="form-control"
           id="lastNameInput"
           placeholder="Lastname"
-          value={lastNameInput}
-          onChange={(ev) => {
-            setLastNameInput(ev.target.value);
-          }}
+          value={userInput.lastNameInput}
+          onChange={handleUserInputChange}
         />
         <label htmlFor="lastNameInput">Lastname</label>
       </div>
@@ -49,27 +42,26 @@ const RegisterPage = () => {
         <input
           type="email"
           className="form-control"
-          id="floatingInput"
+          id="emailInput"
           placeholder="name@example.com"
-          value={emailInput}
-          onChange={handleEmailInputChange}
+          value={userInput.emailInput}
+          onChange={handleUserInputChange}
         />
-        <label htmlFor="floatingInput">Email address</label>
+        <label htmlFor="emailInput">Email address</label>
       </div>
       <div className="form-floating  mb-3">
         <input
           type="password"
           className="form-control"
-          id="floatingPassword"
+          id="passwordInput"
           placeholder="Password"
-          value={passwordInput}
-          onChange={handlePasswordInputChange}
+          value={userInput.passwordInput}
+          onChange={handleUserInputChange}
         />
-        <label htmlFor="floatingPassword">Password</label>
+        <label htmlFor="passwordInput">Password</label>
       </div>
       <button className="btn btn-primary">Register</button>
     </Fragment>
   );
 };
-
 export default RegisterPage;

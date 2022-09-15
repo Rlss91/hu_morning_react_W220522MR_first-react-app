@@ -10,8 +10,8 @@ const App = () => {
   return (
     <div className="container">
       {/* <HelloWorldComponent /> */}
-      {/* <RegisterPage /> */}
-      <LoginPage />
+      <RegisterPage />
+      {/* <LoginPage /> */}
       {/* <ConditionPage /> */}
       {/* <PanelPage /> */}
     </div>
