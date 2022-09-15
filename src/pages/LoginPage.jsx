@@ -1,4 +1,4 @@
-import { Fragment, useState } from "react";
+import { useState } from "react";
 const LoginPage = () => {
   const [emailInput, setEmailInput] = useState(""); //init state
   const [passwordInput, setPasswordInput] = useState(""); //init state
@@ -8,8 +8,12 @@ const LoginPage = () => {
   const handlePasswordInputChange = (ev) => {
     setPasswordInput(ev.target.value);
   };
+
+  const handleSubmit = (ev) => {
+    ev.preventDefault();
+  };
   return (
-    <Fragment>
+    <form onSubmit={handleSubmit}>
       <h2>Login page</h2>
 
       <div className="form-floating mb-3">
@@ -34,8 +38,8 @@ const LoginPage = () => {
         />
         <label htmlFor="floatingPassword">Password</label>
       </div>
-      <button className="btn btn-primary">Register</button>
-    </Fragment>
+      <button className="btn btn-primary">Login</button>
+    </form>
   );
 };
 
