@@ -11,9 +11,9 @@ const App = () => {
     <div className="container">
       {/* <HelloWorldComponent /> */}
       {/* <RegisterPage /> */}
-      {/* <LoginPage /> */}
+      <LoginPage />
       {/* <ConditionPage /> */}
-      <PanelPage />
+      {/* <PanelPage /> */}
     </div>
   );
 };

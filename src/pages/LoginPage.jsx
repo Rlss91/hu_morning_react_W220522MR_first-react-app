@@ -1,13 +1,15 @@
 import { useState } from "react";
 const LoginPage = () => {
-  const [emailInput, setEmailInput] = useState(""); //init state
-  const [passwordInput, setPasswordInput] = useState(""); //init state
-  const handleEmailInputChange = (ev) => {
-    setEmailInput(ev.target.value);
+  const [userInput, setUserInput] = useState({
+    email: "",
+    password: "",
+  }); //init state
+  const handleUserInputChange = (ev) => {
+    let newUserInput = JSON.parse(JSON.stringify(userInput)); //deep copy
+    newUserInput[ev.target.id] = ev.target.value; //set new value dynamically
+    setUserInput(newUserInput); //update state
   };
-  const handlePasswordInputChange = (ev) => {
-    setPasswordInput(ev.target.value);
-  };
+
   const handleSubmit = (ev) => {
     ev.preventDefault();
   };
@@ -19,23 +21,23 @@ const LoginPage = () => {
         <input
           type="email"
           className="form-control"
-          id="floatingInput"
+          id="email"
           placeholder="name@example.com"
-          value={emailInput}
-          onChange={handleEmailInputChange}
+          value={userInput.email}
+          onChange={handleUserInputChange}
         />
-        <label htmlFor="floatingInput">Email address</label>
+        <label htmlFor="email">Email address</label>
       </div>
       <div className="form-floating  mb-3">
         <input
           type="password"
           className="form-control"
-          id="floatingPassword"
+          id="password"
           placeholder="Password"
-          value={passwordInput}
-          onChange={handlePasswordInputChange}
+          value={userInput.password}
+          onChange={handleUserInputChange}
         />
-        <label htmlFor="floatingPassword">Password</label>
+        <label htmlFor="password">Password</label>
       </div>
       <button className="btn btn-primary">Login</button>
     </form>
