@@ -54,7 +54,7 @@ const PanelPage = () => {
         <label htmlFor="floatingInput">Find</label>
       </div>
       <div className="row row-cols-1 row-cols-md-2 g-4">
-        {bizCardArr.map((item, idx) => (
+        {bizCardArr.map((item) => (
           <BizCardComponent
             key={"biz" + item.id}
             name={item.name}
