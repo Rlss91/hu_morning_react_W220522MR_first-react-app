@@ -1,4 +1,5 @@
 import { Fragment, useState, useEffect } from "react";
+import BizCardComponent from "../../components/BizCardComponent";
 import "./PanelPage.scss";
 
 const initialBizCardArray = [
@@ -48,19 +49,7 @@ const PanelPage = () => {
       </div>
       <div className="row row-cols-1 row-cols-md-2 g-4">
         {bizCardArr.map((item, idx) => (
-          <div className="col" key={"bizCards" + idx}>
-            <div className="card">
-              <img src={item.img} className="card-img-top" alt={item.name} />
-              <div className="card-body">
-                <h5 className="card-title">{item.name}</h5>
-                <p className="card-text">
-                  This is a longer card with supporting text below as a natural
-                  lead-in to additional content. This content is a little bit
-                  longer.
-                </p>
-              </div>
-            </div>
-          </div>
+          <BizCardComponent />
         ))}
       </div>
     </Fragment>

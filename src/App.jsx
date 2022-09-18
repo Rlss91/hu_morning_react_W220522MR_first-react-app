@@ -16,9 +16,9 @@ const App = () => {
       {/* <RegisterPage /> */}
       {/* <LoginPage /> */}
       {/* <ConditionPage /> */}
-      {/* <PanelPage /> */}
-      <button onClick={(ev) => setTf(!tf)}>toggle timer</button>
-      {tf && <SideEffectPage />}
+      <PanelPage />
+      {/* <button onClick={(ev) => setTf(!tf)}>toggle timer</button>
+      {tf && <SideEffectPage />} */}
     </div>
   );
 };
