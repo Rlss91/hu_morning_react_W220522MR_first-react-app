@@ -2,7 +2,7 @@ import { Fragment, useState, useEffect } from "react";
 import BizCardComponent from "../../components/BizCardComponent";
 import "./PanelPage.scss";
 
-const initialBizCardArray = [
+let initialBizCardArray = [
   {
     name: "test1",
     img: "https://parrotdm.com/wp-content/uploads/2020/10/27255-scaled.jpg",
@@ -40,6 +40,12 @@ const PanelPage = () => {
     // }, 1000);
     setFindInput(ev.target.value);
   };
+
+  const handleBizCardDelete = (id) => {
+    initialBizCardArray = initialBizCardArray.filter((item) => item.id !== id);
+    setBizCardArr(initialBizCardArray);
+  };
+
   return (
     <Fragment>
       <div className="form-floating mb-3">
@@ -61,6 +67,7 @@ const PanelPage = () => {
             img={item.img}
             desc={item.desc}
             id={item.id}
+            onDelete={handleBizCardDelete}
           />
         ))}
       </div>
