@@ -1,9 +1,12 @@
 import { Fragment, useState } from "react";
+import axios from "axios";
+
 const RegisterPage = () => {
   const [userInput, setUserInput] = useState({
     nameInput: "",
     emailInput: "",
     passwordInput: "",
+    bizInput: false,
   });
   const handleUserInputChange = (ev) => {
     let newUserInput = JSON.parse(JSON.stringify(userInput));
@@ -12,6 +15,32 @@ const RegisterPage = () => {
       setUserInput(newUserInput);
     }
   };
+
+  const handleCheckBoxInputChange = (ev) => {
+    // console.log("ev", ev);
+    let newUserInput = JSON.parse(JSON.stringify(userInput));
+    if (newUserInput.hasOwnProperty(ev.target.id)) {
+      newUserInput[ev.target.id] = ev.target.checked;
+      setUserInput(newUserInput);
+    }
+  };
+
+  const handleRegisterClick = () => {
+    axios
+      .post("/users/register", {
+        name: userInput.nameInput,
+        email: userInput.emailInput,
+        password: userInput.passwordInput,
+        biz: userInput.bizInput,
+      })
+      .then((res) => {
+        console.log("res", res);
+      })
+      .catch((err) => {
+        console.log("err from axios", err);
+      });
+  };
+
   return (
     <Fragment>
       <h2>Register page</h2>
@@ -48,7 +77,23 @@ const RegisterPage = () => {
         />
         <label htmlFor="passwordInput">Password</label>
       </div>
-      <button className="btn btn-primary">Register</button>
+      <div className="form-check mb-3">
+        <input
+          className="form-check-input"
+          type="checkbox"
+          value=""
+          id="bizInput"
+          checked={userInput.bizInput}
+          onChange={handleCheckBoxInputChange}
+        />
+        <label className="form-check-label" htmlFor="bizInput">
+          Are you business
+        </label>
+      </div>
+
+      <button className="btn btn-primary" onClick={handleRegisterClick}>
+        Register
+      </button>
     </Fragment>
   );
 };
