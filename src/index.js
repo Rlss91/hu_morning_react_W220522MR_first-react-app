@@ -3,10 +3,14 @@ import ReactDOM from "react-dom/client";
 import "./index.scss";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-
+/* axios */
+import axios from "axios";
 /* import bootstrap to react*/
 import "../node_modules/bootstrap/dist/css/bootstrap.css";
 import "../node_modules/bootstrap/dist/js/bootstrap.bundle.js";
+
+/* config axios */
+axios.defaults.baseURL = "http://localhost:8181/api";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(<App />); //<App></App>

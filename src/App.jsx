@@ -13,10 +13,10 @@ const App = () => {
   return (
     <div className="container">
       {/* <HelloWorldComponent /> */}
-      {/* <RegisterPage /> */}
+      <RegisterPage />
       {/* <LoginPage /> */}
       {/* <ConditionPage /> */}
-      <PanelPage />
+      {/* <PanelPage /> */}
       {/* <button onClick={(ev) => setTf(!tf)}>toggle timer</button>
       {tf && <SideEffectPage />} */}
     </div>

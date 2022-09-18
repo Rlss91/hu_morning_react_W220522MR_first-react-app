@@ -2,7 +2,6 @@ import { Fragment, useState } from "react";
 const RegisterPage = () => {
   const [userInput, setUserInput] = useState({
     nameInput: "",
-    lastNameInput: "",
     emailInput: "",
     passwordInput: "",
   });
@@ -26,17 +25,6 @@ const RegisterPage = () => {
           onChange={handleUserInputChange}
         />
         <label htmlFor="nameInput">Name</label>
-      </div>
-      <div className="form-floating mb-3">
-        <input
-          type="text"
-          className="form-control"
-          id="lastNameInput"
-          placeholder="Lastname"
-          value={userInput.lastNameInput}
-          onChange={handleUserInputChange}
-        />
-        <label htmlFor="lastNameInput">Lastname</label>
       </div>
       <div className="form-floating mb-3">
         <input
