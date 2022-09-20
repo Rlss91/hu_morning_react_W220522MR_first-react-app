@@ -1,6 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
+
 const LoginPage = () => {
   const [userInput, setUserInput] = useState({
     email: "",
@@ -38,6 +39,15 @@ const LoginPage = () => {
       })
       .catch((err) => {
         console.log("err", err);
+        toast.error("😭 Something went wrong", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
       });
   };
   return (

@@ -16,9 +16,9 @@ const App = () => {
       <ToastContainer />
       {/* <HelloWorldComponent /> */}
       {/* <RegisterPage /> */}
-      <LoginPage />
+      {/* <LoginPage /> */}
       {/* <ConditionPage /> */}
-      {/* <PanelPage /> */}
+      <PanelPage />
       {/* <button onClick={(ev) => setTf(!tf)}>toggle timer</button>
       {tf && <SideEffectPage />} */}
     </div>
