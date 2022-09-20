@@ -1,4 +1,6 @@
+import axios from "axios";
 import { Fragment, useState, useEffect } from "react";
+import { toast } from "react-toastify";
 import BizCardComponent from "../../components/BizCardComponent";
 import "./PanelPage.scss";
 
@@ -26,6 +28,36 @@ let initialBizCardArray = [];
 const PanelPage = () => {
   const [findInput, setFindInput] = useState("");
   const [bizCardArr, setBizCardArr] = useState(initialBizCardArray);
+
+  useEffect(() => {
+    // axios
+    //   .get("/cards/my-cards")
+    //   .then(({data}) => {
+    //     console.log(data);
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    // })
+    (async () => {
+      try {
+        // let res = await axios.get("/cards/my-cards");
+        // let {data} = res
+        let { data } = await axios.get("/cards/my-cards");
+        initialBizCardArray = data;
+        setBizCardArr(initialBizCardArray);
+      } catch (err) {
+        toast.error("😭 Something went wrong", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      }
+    })();
+  }, []);
 
   useEffect(() => {
     let regex = new RegExp(findInput, "i"); //create regex tamplate that will try to find the value and wil ignore case
