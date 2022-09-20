@@ -2,26 +2,27 @@ import { Fragment, useState, useEffect } from "react";
 import BizCardComponent from "../../components/BizCardComponent";
 import "./PanelPage.scss";
 
-let initialBizCardArray = [
-  {
-    name: "test1",
-    img: "https://parrotdm.com/wp-content/uploads/2020/10/27255-scaled.jpg",
-    desc: "asdfa43634w56erthdrg3453w464w53 5436w4356 w345rwq3 btw54 yw54 yw45yw345y",
-    id: "12312423532452",
-  },
-  {
-    name: "test2",
-    img: "https://parrotdm.com/wp-content/uploads/2020/10/27255-scaled.jpg",
-    desc: "asdfa43634w56erthdrg3453w464w53 5436w4356 w345rwq3 btw54 yw54 yw45yw345y",
-    id: "12312423532453",
-  },
-  {
-    name: "test3",
-    img: "https://parrotdm.com/wp-content/uploads/2020/10/27255-scaled.jpg",
-    desc: "asdfa43634w56erthdrg3453w464w53 5436w4356 w345rwq3 btw54 yw54 yw45yw345y",
-    id: "12312423532454",
-  },
-];
+// let initialBizCardArray = [
+//   {
+//     name: "test1",
+//     img: "https://parrotdm.com/wp-content/uploads/2020/10/27255-scaled.jpg",
+//     desc: "asdfa43634w56erthdrg3453w464w53 5436w4356 w345rwq3 btw54 yw54 yw45yw345y",
+//     id: "12312423532452",
+//   },
+//   {
+//     name: "test2",
+//     img: "https://parrotdm.com/wp-content/uploads/2020/10/27255-scaled.jpg",
+//     desc: "asdfa43634w56erthdrg3453w464w53 5436w4356 w345rwq3 btw54 yw54 yw45yw345y",
+//     id: "12312423532453",
+//   },
+//   {
+//     name: "test3",
+//     img: "https://parrotdm.com/wp-content/uploads/2020/10/27255-scaled.jpg",
+//     desc: "asdfa43634w56erthdrg3453w464w53 5436w4356 w345rwq3 btw54 yw54 yw45yw345y",
+//     id: "12312423532454",
+//   },
+// ];
+let initialBizCardArray = [];
 const PanelPage = () => {
   const [findInput, setFindInput] = useState("");
   const [bizCardArr, setBizCardArr] = useState(initialBizCardArray);
@@ -30,19 +31,16 @@ const PanelPage = () => {
     let regex = new RegExp(findInput, "i"); //create regex tamplate that will try to find the value and wil ignore case
     let bizCardArrCopy = JSON.parse(JSON.stringify(initialBizCardArray)); //cloneDeep
     // you cant change the array directly from the state, so we must do cloneDeep
-    bizCardArrCopy = bizCardArrCopy.filter((item) => regex.test(item.name));
+    bizCardArrCopy = bizCardArrCopy.filter((item) => regex.test(item.title));
     setBizCardArr(bizCardArrCopy);
   }, [findInput]);
 
   const handleFindInputChange = (ev) => {
-    // setTimeout(() => {
-    //   setFindInput("1");
-    // }, 1000);
     setFindInput(ev.target.value);
   };
 
   const handleBizCardDelete = (id) => {
-    initialBizCardArray = initialBizCardArray.filter((item) => item.id !== id);
+    initialBizCardArray = initialBizCardArray.filter((item) => item._id !== id);
     setBizCardArr(initialBizCardArray);
   };
 
@@ -62,11 +60,11 @@ const PanelPage = () => {
       <div className="row row-cols-1 row-cols-md-2 g-4">
         {bizCardArr.map((item) => (
           <BizCardComponent
-            key={"biz" + item.id}
-            name={item.name}
-            img={item.img}
-            desc={item.desc}
-            id={item.id}
+            key={"biz" + item._id}
+            name={item.title}
+            img={item.image.url}
+            desc={item.description}
+            id={item._id}
             onDelete={handleBizCardDelete}
           />
         ))}

@@ -13,6 +13,19 @@ import "react-toastify/dist/ReactToastify.css";
 /* config axios */
 axios.defaults.baseURL = "http://localhost:8181/api";
 
+axios.interceptors.request.use((config) => {
+  const token = localStorage.getItem("token");
+  if (token) {
+    /*
+        the token exists in local storage,
+        the user logged in.
+        if the token exists then we will add it to header of the request
+    */
+    config.headers["x-auth-token"] = token;
+  }
+  return config;
+});
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(<App />); //<App></App>
 
