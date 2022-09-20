@@ -1,4 +1,6 @@
 import { useState } from "react";
+import axios from "axios";
+import { toast } from "react-toastify";
 const LoginPage = () => {
   const [userInput, setUserInput] = useState({
     email: "",
@@ -18,6 +20,25 @@ const LoginPage = () => {
 
   const handleSubmit = (ev) => {
     ev.preventDefault();
+    axios
+      .post("/users/login", userInput)
+      .then((res) => {
+        console.log("data", res.data);
+        localStorage.setItem("token", res.data.token);
+        //redirect to panel
+        toast("🦄 Wow so easy!", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      })
+      .catch((err) => {
+        console.log("err", err);
+      });
   };
   return (
     <form onSubmit={handleSubmit}>
@@ -34,7 +55,7 @@ const LoginPage = () => {
         />
         <label htmlFor="email">Email address</label>
       </div>
-      <div className="form-floating  mb-3">
+      <div className="form-floating mb-3">
         <input
           type="password"
           className="form-control"

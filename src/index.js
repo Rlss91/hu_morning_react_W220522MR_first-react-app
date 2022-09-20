@@ -8,7 +8,8 @@ import axios from "axios";
 /* import bootstrap to react*/
 import "../node_modules/bootstrap/dist/css/bootstrap.css";
 import "../node_modules/bootstrap/dist/js/bootstrap.bundle.js";
-
+/* import Toastify to react */
+import "react-toastify/dist/ReactToastify.css";
 /* config axios */
 axios.defaults.baseURL = "http://localhost:8181/api";
 
