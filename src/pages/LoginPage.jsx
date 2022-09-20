@@ -1,6 +1,9 @@
 import { useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
+import Joi from "joi-browser";
+
+import loginSchema from "../validation/login.validation";
 
 const LoginPage = () => {
   const [userInput, setUserInput] = useState({
@@ -21,6 +24,36 @@ const LoginPage = () => {
 
   const handleSubmit = (ev) => {
     ev.preventDefault();
+    const { error } = Joi.validate(userInput, loginSchema, {
+      abortEarly: false,
+    });
+    if (error) {
+      let errorMsgs = "";
+      for (let errorItem of error.details) {
+        switch (errorItem.type) {
+          case "string.min":
+            errorMsgs += "password length must be at least 6 characters long, ";
+            break;
+          case "string.max":
+            errorMsgs +=
+              "password length must be at least 1024 characters long, ";
+            break;
+          default:
+            errorMsgs += "something went wrong,";
+            break;
+        }
+      }
+      toast.error(errorMsgs, {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+      return;
+    }
     axios
       .post("/users/login", userInput)
       .then((res) => {
