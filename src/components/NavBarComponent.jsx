@@ -38,8 +38,8 @@ const NavBarComponent = () => {
                 Home
               </a>
             </li> */}
-            {links.map((item) => (
-              <li className="nav-item">
+            {links.map((item, idx) => (
+              <li className="nav-item" key={"navlinks" + idx}>
                 <a className="nav-link" href="#">
                   {item.label}
                 </a>

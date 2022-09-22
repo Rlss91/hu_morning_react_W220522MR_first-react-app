@@ -1,6 +1,8 @@
 import { useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { useDispatch } from "react-redux";
+import { authActions } from "../store/auth";
 // import Joi from "joi-browser";
 import validate from "../validation/validation";
 import loginSchema from "../validation/login.validation";
@@ -10,6 +12,7 @@ const LoginPage = () => {
     email: "",
     password: "",
   }); //init state
+  const dispatch = useDispatch();
   const handleUserInputChange = (ev) => {
     let newUserInput = JSON.parse(JSON.stringify(userInput)); //deep copy
     newUserInput[ev.target.id] = ev.target.value; //set new value dynamically
@@ -58,6 +61,7 @@ const LoginPage = () => {
       .then((res) => {
         console.log("data", res.data);
         localStorage.setItem("token", res.data.token);
+        dispatch(authActions.login());
         //redirect to panel
         toast("🦄 Wow so easy!", {
           position: "top-right",
