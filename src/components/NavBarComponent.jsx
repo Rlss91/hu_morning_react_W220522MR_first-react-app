@@ -1,3 +1,5 @@
+import { useSelector } from "react-redux";
+
 let links = [
   {
     label: "Home",
@@ -13,7 +15,31 @@ let links = [
   },
 ];
 
+let authLinks = {
+  isLoggedIn: [
+    {
+      label: "Welcome",
+      url: "/profile",
+    },
+    {
+      label: "Logout",
+      url: "/logout",
+    },
+  ],
+  isLoggedOut: [
+    {
+      label: "Login",
+      url: "/login",
+    },
+    {
+      label: "Register",
+      url: "/register",
+    },
+  ],
+};
+
 const NavBarComponent = () => {
+  const loggedIn = useSelector((state) => state.auth.loggedIn);
   return (
     <nav className="navbar navbar-expand-lg bg-light">
       <div className="container-fluid">
@@ -47,15 +73,7 @@ const NavBarComponent = () => {
             ))}
           </ul>
           <form className="d-flex" role="search">
-            <input
-              className="form-control me-2"
-              type="search"
-              placeholder="Search"
-              aria-label="Search"
-            />
-            <button className="btn btn-outline-success" type="submit">
-              Search
-            </button>
+            {loggedIn ? "You logged in" : "You need to login"}
           </form>
         </div>
       </div>
