@@ -8,11 +8,13 @@ import ConditionPage from "./pages/ConditionPage";
 import RegisterPage from "./pages/RegisterPage";
 import PanelPage from "./pages/PanelPage/PanelPage";
 import SideEffectPage from "./pages/SideEffect";
+import NavBarComponent from "./components/NavBarComponent";
 
 const App = () => {
   // const [tf, setTf] = useState(true);
   return (
     <div className="container">
+      <NavBarComponent />
       <ToastContainer />
       {/* <HelloWorldComponent /> */}
       {/* <RegisterPage /> */}

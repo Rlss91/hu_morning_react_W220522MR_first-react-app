@@ -10,6 +10,9 @@ import "../node_modules/bootstrap/dist/css/bootstrap.css";
 import "../node_modules/bootstrap/dist/js/bootstrap.bundle.js";
 /* import Toastify to react */
 import "react-toastify/dist/ReactToastify.css";
+/* import redux */
+import { Provider } from "react-redux";
+import store from "./store/index";
 /* config axios */
 axios.defaults.baseURL = "http://localhost:8181/api";
 
@@ -27,7 +30,11 @@ axios.interceptors.request.use((config) => {
 });
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(<App />); //<App></App>
+root.render(
+  <Provider store={store}>
+    <App />
+  </Provider>
+); //<App></App>
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
