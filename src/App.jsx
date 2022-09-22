@@ -9,6 +9,8 @@ import RegisterPage from "./pages/RegisterPage";
 import PanelPage from "./pages/PanelPage/PanelPage";
 import SideEffectPage from "./pages/SideEffect";
 import NavBarComponent from "./components/NavBarComponent";
+import TkReduxPage1 from "./pages/TKRedux/TkReduxPage1";
+import TkReduxPage2 from "./pages/TKRedux/TkReduxPage2";
 
 const App = () => {
   // const [tf, setTf] = useState(true);
@@ -18,9 +20,11 @@ const App = () => {
       <ToastContainer />
       {/* <HelloWorldComponent /> */}
       {/* <RegisterPage /> */}
-      <LoginPage />
+      {/* <LoginPage /> */}
       {/* <ConditionPage /> */}
       {/* <PanelPage /> */}
+      <TkReduxPage1 />
+      <TkReduxPage2 />
       {/* <button onClick={(ev) => setTf(!tf)}>toggle timer</button>
       {tf && <SideEffectPage />} */}
     </div>
