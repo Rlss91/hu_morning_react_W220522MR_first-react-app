@@ -1,4 +1,5 @@
 import { useSelector } from "react-redux";
+import NavBarLinkPartial from "../partial/NavBarLinkPartial";
 
 let links = [
   {
@@ -38,8 +39,20 @@ let authLinks = {
   ],
 };
 
+let bizLinks = [
+  {
+    label: "Create card",
+    url: "/createcard",
+  },
+  {
+    label: "My cards",
+    url: "/mycards",
+  },
+];
+
 const NavBarComponent = () => {
   const loggedIn = useSelector((state) => state.auth.loggedIn);
+  const dataFromToken = useSelector((state) => state.auth.userData);
   return (
     <nav className="navbar navbar-expand-lg bg-light">
       <div className="container-fluid">
@@ -65,15 +78,38 @@ const NavBarComponent = () => {
               </a>
             </li> */}
             {links.map((item, idx) => (
-              <li className="nav-item" key={"navlinks" + idx}>
-                <a className="nav-link" href="#">
-                  {item.label}
-                </a>
-              </li>
+              <NavBarLinkPartial key={"navlinks" + idx} label={item.label} />
             ))}
+            {dataFromToken &&
+              dataFromToken.biz &&
+              bizLinks.map((item, idx) => (
+                <NavBarLinkPartial
+                  key={"biznavlinks" + idx}
+                  label={item.label}
+                />
+              ))}
           </ul>
           <form className="d-flex" role="search">
-            {loggedIn ? "You logged in" : "You need to login"}
+            {/* {loggedIn ? "You logged in" : "You need to login"} */}
+            {loggedIn
+              ? authLinks.isLoggedIn.map((item, idx) => (
+                  <button
+                    type="button"
+                    key={"loggedIn" + idx}
+                    className="btn btn-dark"
+                  >
+                    {item.label}
+                  </button>
+                ))
+              : authLinks.isLoggedOut.map((item, idx) => (
+                  <button
+                    type="button"
+                    key={"loggedOut" + idx}
+                    className="btn btn-dark"
+                  >
+                    {item.label}
+                  </button>
+                ))}
           </form>
         </div>
       </div>

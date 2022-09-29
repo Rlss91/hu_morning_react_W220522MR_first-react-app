@@ -4,6 +4,7 @@ import { createSlice } from "@reduxjs/toolkit";
 //this object configure the redux "state"
 const initialAuthState = {
   loggedIn: false,
+  userData: {},
 };
 
 const authSlice = createSlice({
@@ -18,8 +19,10 @@ const authSlice = createSlice({
         we will call this function when we logged in
         to update redux "state" that the user logged in
     */
-    login(state) {
+    login(state, action) {
       state.loggedIn = true;
+      // better to verify the payload
+      state.userData = action.payload;
     },
     /*
         we will call this function when we logged out

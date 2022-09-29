@@ -63,7 +63,7 @@ const LoginPage = () => {
         console.log("data", res.data);
         console.log("jwt_decode", jwt_decode(res.data.token));
         localStorage.setItem("token", res.data.token);
-        dispatch(authActions.login());
+        dispatch(authActions.login(jwt_decode(res.data.token)));
         //redirect to panel
         toast("🦄 Wow so easy!", {
           position: "top-right",
