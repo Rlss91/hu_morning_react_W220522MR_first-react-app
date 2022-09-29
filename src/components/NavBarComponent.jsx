@@ -1,5 +1,6 @@
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import NavBarLinkPartial from "../partial/NavBarLinkPartial";
+import { authActions } from "../store/auth";
 
 let links = [
   {
@@ -51,8 +52,13 @@ let bizLinks = [
 ];
 
 const NavBarComponent = () => {
+  const dispatch = useDispatch();
   const loggedIn = useSelector((state) => state.auth.loggedIn);
   const dataFromToken = useSelector((state) => state.auth.userData);
+  const handleLogoutBtnClick = () => {
+    localStorage.clear();
+    dispatch(authActions.logout());
+  };
   return (
     <nav className="navbar navbar-expand-lg bg-light">
       <div className="container-fluid">
@@ -97,6 +103,9 @@ const NavBarComponent = () => {
                     type="button"
                     key={"loggedIn" + idx}
                     className="btn btn-dark"
+                    onClick={
+                      item.label === "Logout" ? handleLogoutBtnClick : () => {}
+                    }
                   >
                     {item.label}
                   </button>
