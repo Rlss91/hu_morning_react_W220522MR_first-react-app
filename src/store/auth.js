@@ -26,12 +26,14 @@ const authSlice = createSlice({
     },
     /*
         we will call this function when we logged out
-        to update redux "state" that the user logged out
+        to update redux "state" that the user logged out.
+        if we need to reset the state this is the simpler way
     */
-    logout(state) {
-      state.loggedIn = false;
-      state.userData = null;
-    },
+    logout: (state) => initialAuthState,
+    // logout(state) {
+    //   state.loggedIn = false;
+    //   state.userData = null;
+    // },
   },
 });
 
