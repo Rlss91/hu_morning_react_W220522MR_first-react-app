@@ -20,11 +20,11 @@ const App = () => {
       <ToastContainer />
       {/* <HelloWorldComponent /> */}
       {/* <RegisterPage /> */}
-      {/* <LoginPage /> */}
+      <LoginPage />
       {/* <ConditionPage /> */}
       {/* <PanelPage /> */}
-      <TkReduxPage1 />
-      <TkReduxPage2 />
+      {/* <TkReduxPage1 /> */}
+      {/* <TkReduxPage2 /> */}
       {/* <button onClick={(ev) => setTf(!tf)}>toggle timer</button>
       {tf && <SideEffectPage />} */}
     </div>

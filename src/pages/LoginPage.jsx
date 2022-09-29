@@ -3,6 +3,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { useDispatch } from "react-redux";
 import { authActions } from "../store/auth";
+import jwt_decode from "jwt-decode";
 // import Joi from "joi-browser";
 import validate from "../validation/validation";
 import loginSchema from "../validation/login.validation";
@@ -60,6 +61,7 @@ const LoginPage = () => {
       .post("/users/login", userInput)
       .then((res) => {
         console.log("data", res.data);
+        console.log("jwt_decode", jwt_decode(res.data.token));
         localStorage.setItem("token", res.data.token);
         dispatch(authActions.login());
         //redirect to panel
