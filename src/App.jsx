@@ -17,6 +17,8 @@ import TkReduxPage2 from "./pages/TKRedux/TkReduxPage2";
 import autoLogin from "./services/autoLogin";
 import HomePage from "./pages/HomePage";
 import { Route, Switch } from "react-router-dom";
+import RouteP1Page from "./pages/RouteP1Page";
+import RouteP2Page from "./pages/RouteP2Page";
 
 const App = () => {
   // const [tf, setTf] = useState(true);
@@ -44,6 +46,8 @@ const App = () => {
         <Route path="/login" component={LoginPage}></Route>
         <Route path="/register" component={RegisterPage}></Route>
         <Route path="/panelpage" component={PanelPage}></Route>
+        <Route path="/pages" exact component={RouteP1Page}></Route>
+        <Route path="/pages/p2" component={RouteP2Page}></Route>
       </Switch>
       {/* <HelloWorldComponent /> */}
       {/* <RegisterPage /> */}
