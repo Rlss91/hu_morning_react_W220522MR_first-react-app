@@ -5,6 +5,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialAuthState = {
   loggedIn: false,
   userData: null,
+  userInfo: null,
 };
 
 const authSlice = createSlice({
@@ -34,6 +35,10 @@ const authSlice = createSlice({
     //   state.loggedIn = false;
     //   state.userData = null;
     // },
+    updateUserInfo(state, action) {
+      // better to verify the payload
+      state.userInfo = action.payload;
+    },
   },
 });
 

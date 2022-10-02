@@ -1,3 +1,4 @@
+import { Fragment } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import NavBarLinkPartial from "../partial/NavBarLinkPartial";
 import { authActions } from "../store/auth";
@@ -55,6 +56,7 @@ const NavBarComponent = () => {
   const dispatch = useDispatch();
   const loggedIn = useSelector((state) => state.auth.loggedIn);
   const dataFromToken = useSelector((state) => state.auth.userData);
+  const userInfo = useSelector((state) => state.auth.userInfo);
   const handleLogoutBtnClick = () => {
     localStorage.clear();
     dispatch(authActions.logout());
@@ -97,28 +99,30 @@ const NavBarComponent = () => {
           </ul>
           <form className="d-flex" role="search">
             {/* {loggedIn ? "You logged in" : "You need to login"} */}
-            {loggedIn
-              ? authLinks.isLoggedIn.map((item, idx) => (
-                  <button
-                    type="button"
-                    key={"loggedIn" + idx}
-                    className="btn btn-dark"
-                    onClick={
-                      item.label === "Logout" ? handleLogoutBtnClick : () => {}
-                    }
-                  >
-                    {item.label}
-                  </button>
-                ))
-              : authLinks.isLoggedOut.map((item, idx) => (
-                  <button
-                    type="button"
-                    key={"loggedOut" + idx}
-                    className="btn btn-dark"
-                  >
-                    {item.label}
-                  </button>
-                ))}
+            {loggedIn ? (
+              <Fragment>
+                <button type="button" className="btn btn-dark">
+                  {"Welcome " + userInfo.name}
+                </button>
+                <button
+                  type="button"
+                  className="btn btn-dark"
+                  onClick={handleLogoutBtnClick}
+                >
+                  "Logout"
+                </button>
+              </Fragment>
+            ) : (
+              authLinks.isLoggedOut.map((item, idx) => (
+                <button
+                  type="button"
+                  key={"loggedOut" + idx}
+                  className="btn btn-dark"
+                >
+                  {item.label}
+                </button>
+              ))
+            )}
           </form>
         </div>
       </div>
