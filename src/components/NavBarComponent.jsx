@@ -86,7 +86,11 @@ const NavBarComponent = () => {
               </a>
             </li> */}
             {links.map((item, idx) => (
-              <NavBarLinkPartial key={"navlinks" + idx} label={item.label} />
+              <NavBarLinkPartial
+                key={"navlinks" + idx}
+                label={item.label}
+                link={item.url}
+              />
             ))}
             {dataFromToken &&
               dataFromToken.biz &&
@@ -94,6 +98,7 @@ const NavBarComponent = () => {
                 <NavBarLinkPartial
                   key={"biznavlinks" + idx}
                   label={item.label}
+                  link={item.url}
                 />
               ))}
           </ul>
@@ -109,7 +114,7 @@ const NavBarComponent = () => {
                   className="btn btn-dark"
                   onClick={handleLogoutBtnClick}
                 >
-                  "Logout"
+                  Logout
                 </button>
               </Fragment>
             ) : (

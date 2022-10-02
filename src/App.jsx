@@ -15,6 +15,8 @@ import NavBarComponent from "./components/NavBarComponent";
 import TkReduxPage1 from "./pages/TKRedux/TkReduxPage1";
 import TkReduxPage2 from "./pages/TKRedux/TkReduxPage2";
 import autoLogin from "./services/autoLogin";
+import HomePage from "./pages/HomePage";
+import { Route, Switch } from "react-router-dom";
 
 const App = () => {
   // const [tf, setTf] = useState(true);
@@ -37,9 +39,15 @@ const App = () => {
     <div className="container">
       <NavBarComponent />
       <ToastContainer />
+      <Switch>
+        <Route path="/" exact component={HomePage}></Route>
+        <Route path="/login" component={LoginPage}></Route>
+        <Route path="/register" component={RegisterPage}></Route>
+        <Route path="/panelpage" component={PanelPage}></Route>
+      </Switch>
       {/* <HelloWorldComponent /> */}
       {/* <RegisterPage /> */}
-      <LoginPage />
+      {/* <LoginPage /> */}
       {/* <ConditionPage /> */}
       {/* <PanelPage /> */}
       {/* <TkReduxPage1 /> */}
