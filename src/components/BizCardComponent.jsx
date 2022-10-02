@@ -1,5 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
+import { faTrashCan, faPenToSquare } from "@fortawesome/free-solid-svg-icons";
+import { Link } from "react-router-dom";
 
 // const BizCardComponent = (props) => {
 const BizCardComponent = ({ name, img, desc, id, onDelete }) => {
@@ -23,6 +24,10 @@ const BizCardComponent = ({ name, img, desc, id, onDelete }) => {
             <FontAwesomeIcon icon={faTrashCan} />
             Delete
           </button>
+          <Link to="/" className="btn btn-warning ms-2">
+            <FontAwesomeIcon icon={faPenToSquare} />
+            Edit
+          </Link>
         </div>
       </div>
     </div>
