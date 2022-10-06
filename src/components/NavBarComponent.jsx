@@ -1,5 +1,6 @@
 import { Fragment } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 import NavBarLinkPartial from "../partial/NavBarLinkPartial";
 import { authActions } from "../store/auth";
 
@@ -54,12 +55,14 @@ let bizLinks = [
 
 const NavBarComponent = () => {
   const dispatch = useDispatch();
+  const history = useHistory();
   const loggedIn = useSelector((state) => state.auth.loggedIn);
   const dataFromToken = useSelector((state) => state.auth.userData);
   const userInfo = useSelector((state) => state.auth.userInfo);
   const handleLogoutBtnClick = () => {
     localStorage.clear();
     dispatch(authActions.logout());
+    history.push("/");
   };
   return (
     <nav className="navbar navbar-expand-lg bg-light">
@@ -123,6 +126,9 @@ const NavBarComponent = () => {
                   type="button"
                   key={"loggedOut" + idx}
                   className="btn btn-dark"
+                  onClick={() => {
+                    history.push(item.url);
+                  }}
                 >
                   {item.label}
                 </button>
