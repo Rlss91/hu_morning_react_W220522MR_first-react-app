@@ -24,9 +24,9 @@ const BizCardComponent = ({ name, img, desc, id, onDelete }) => {
             <FontAwesomeIcon icon={faTrashCan} />
             Delete
           </button>
-          <Link to={`/moreinfo/${id}`} className="btn btn-warning ms-2">
+          <Link to={`/editbizcard/${id}`} className="btn btn-warning ms-2">
             <FontAwesomeIcon icon={faPenToSquare} />
-            Show more
+            Edit
           </Link>
         </div>
       </div>
