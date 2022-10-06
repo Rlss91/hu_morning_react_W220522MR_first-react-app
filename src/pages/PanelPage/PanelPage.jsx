@@ -4,44 +4,14 @@ import { toast } from "react-toastify";
 import BizCardComponent from "../../components/BizCardComponent";
 import "./PanelPage.scss";
 
-// let initialBizCardArray = [
-//   {
-//     name: "test1",
-//     img: "https://parrotdm.com/wp-content/uploads/2020/10/27255-scaled.jpg",
-//     desc: "asdfa43634w56erthdrg3453w464w53 5436w4356 w345rwq3 btw54 yw54 yw45yw345y",
-//     id: "12312423532452",
-//   },
-//   {
-//     name: "test2",
-//     img: "https://parrotdm.com/wp-content/uploads/2020/10/27255-scaled.jpg",
-//     desc: "asdfa43634w56erthdrg3453w464w53 5436w4356 w345rwq3 btw54 yw54 yw45yw345y",
-//     id: "12312423532453",
-//   },
-//   {
-//     name: "test3",
-//     img: "https://parrotdm.com/wp-content/uploads/2020/10/27255-scaled.jpg",
-//     desc: "asdfa43634w56erthdrg3453w464w53 5436w4356 w345rwq3 btw54 yw54 yw45yw345y",
-//     id: "12312423532454",
-//   },
-// ];
 let initialBizCardArray = [];
 const PanelPage = () => {
   const [findInput, setFindInput] = useState("");
   const [bizCardArr, setBizCardArr] = useState(initialBizCardArray);
 
   useEffect(() => {
-    // axios
-    //   .get("/cards/my-cards")
-    //   .then(({data}) => {
-    //     console.log(data);
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    // })
     (async () => {
       try {
-        // let res = await axios.get("/cards/my-cards");
-        // let {data} = res
         let { data } = await axios.get("/cards/my-cards");
         initialBizCardArray = data;
         setBizCardArr(initialBizCardArray);

@@ -23,6 +23,7 @@ import MoreInfoBizCardPage from "./pages/MoreInfoBizCardPage";
 import EditBizCardPage from "./pages/EditBizCardPage";
 import NotFoundPage from "./pages/NotFoundPage";
 import AuthGuardRoute from "./components/AuthGuardRoute";
+import QParamsPage from "./pages/QParamsPage";
 
 const App = () => {
   // const [tf, setTf] = useState(true);
@@ -61,6 +62,7 @@ const App = () => {
         ></AuthGuardRoute>
         <Route path="/pages" component={RouteP1Page}></Route>
         <Route path="/pages/p2" component={RouteP2Page}></Route>
+        <Route path="/qparams" component={QParamsPage}></Route>
         <Route path="*" component={NotFoundPage}></Route>
       </Switch>
       {/* <HelloWorldComponent /> */}
