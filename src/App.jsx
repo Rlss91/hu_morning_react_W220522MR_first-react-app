@@ -21,6 +21,8 @@ import RouteP1Page from "./pages/RouteP1Page";
 import RouteP2Page from "./pages/RouteP2Page";
 import MoreInfoBizCardPage from "./pages/MoreInfoBizCardPage";
 import EditBizCardPage from "./pages/EditBizCardPage";
+import NotFoundPage from "./pages/NotFoundPage";
+import AuthGuardRoute from "./components/AuthGuardRoute";
 
 const App = () => {
   // const [tf, setTf] = useState(true);
@@ -47,11 +49,19 @@ const App = () => {
         <Route path="/" exact component={HomePage}></Route>
         <Route path="/login" component={LoginPage}></Route>
         <Route path="/register" component={RegisterPage}></Route>
-        <Route path="/panelpage" component={PanelPage}></Route>
+        {/* <Route path="/panelpage" component={PanelPage}></Route> */}
+        <AuthGuardRoute
+          path="/panelpage"
+          component={PanelPage}
+        ></AuthGuardRoute>
         <Route path="/moreinfo/:id" component={MoreInfoBizCardPage}></Route>
-        <Route path="/editbizcard/:id" component={EditBizCardPage}></Route>
+        <AuthGuardRoute
+          path="/editbizcard/:id"
+          component={EditBizCardPage}
+        ></AuthGuardRoute>
         <Route path="/pages" component={RouteP1Page}></Route>
         <Route path="/pages/p2" component={RouteP2Page}></Route>
+        <Route path="*" component={NotFoundPage}></Route>
       </Switch>
       {/* <HelloWorldComponent /> */}
       {/* <RegisterPage /> */}

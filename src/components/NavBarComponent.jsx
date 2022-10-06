@@ -10,10 +10,6 @@ let links = [
     url: "/",
   },
   {
-    label: "Panel",
-    url: "/panelpage",
-  },
-  {
     label: "About us",
     url: "/aboutus",
   },
@@ -48,8 +44,8 @@ let bizLinks = [
     url: "/createcard",
   },
   {
-    label: "My cards",
-    url: "/mycards",
+    label: "Panel",
+    url: "/panelpage",
   },
 ];
 
