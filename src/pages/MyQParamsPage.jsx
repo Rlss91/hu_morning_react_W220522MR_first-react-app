@@ -16,7 +16,21 @@ const MyQParamsPage = () => {
       searchObj[arr[0]] = arr[1];
     }
     console.log("searchObj", searchObj);
+    objToQParams();
   }, []);
+  const objToQParams = () => {
+    let obj = {
+      name: "kenny",
+      lastname: "mccormic",
+      phone: "050500550505",
+    };
+    let qparamsStr = "?";
+    for (let [key, val] of Object.entries(obj)) {
+      qparamsStr += `${key}=${val}&`;
+    }
+    qparamsStr = qparamsStr.slice(0, -1);
+    console.log("qparamsStr", qparamsStr);
+  };
   return <h1>MyQParams</h1>;
 };
 
