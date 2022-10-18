@@ -17,18 +17,23 @@ const QParamsPageFilter = () => {
   const history = useHistory();
   useEffect(() => {
     const qParmas = new URLSearchParams(location.search);
+    let newFilteredArr = undefined;
     if (qParmas.has("filter")) {
       let filter = qParmas.get("filter");
       let regex = new RegExp(filter, "i");
-      let newFilteredArr = JSON.parse(JSON.stringify(originalArr));
+      newFilteredArr = JSON.parse(JSON.stringify(originalArr));
       newFilteredArr = newFilteredArr.filter((item) => regex.test(item));
-      setFilteredArr(newFilteredArr);
+      // setFilteredArr(newFilteredArr);
+      // console.log("filteredArr (state) after set", filteredArr);
       if (filter !== filterInput) {
         setFilterInput(filter);
       }
     }
     if (qParmas.has("sort")) {
-      let newFilteredArr = JSON.parse(JSON.stringify(filteredArr));
+      if (!newFilteredArr) {
+        newFilteredArr = JSON.parse(JSON.stringify(filteredArr));
+      }
+      // let newFilteredArr = JSON.parse(JSON.stringify(filteredArr));
       if (qParmas.get("sort") === "asc") {
         newFilteredArr.sort();
       }
@@ -39,12 +44,14 @@ const QParamsPageFilter = () => {
           return 0;
         });
       }
-      setFilteredArr(newFilteredArr);
     }
+    if (newFilteredArr) setFilteredArr(newFilteredArr);
   }, [location]);
   const handleInputKeyUp = (ev) => {
     if (ev.code === "Enter") {
-      history.push(`/qparamsfilter?filter=${filterInput}`);
+      let qParmas = new URLSearchParams(location.search);
+      qParmas.set("filter", filterInput);
+      history.push(`/qparamsfilter?${qParmas.toString()}`);
     }
   };
   const handleInputChange = (ev) => {
