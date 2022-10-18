@@ -27,6 +27,20 @@ const QParamsPageFilter = () => {
         setFilterInput(filter);
       }
     }
+    if (qParmas.has("sort")) {
+      let newFilteredArr = JSON.parse(JSON.stringify(filteredArr));
+      if (qParmas.get("sort") === "asc") {
+        newFilteredArr.sort();
+      }
+      if (qParmas.get("sort") === "desc") {
+        newFilteredArr.sort((a, b) => {
+          if (a > b) return -1;
+          if (a < b) return 1;
+          return 0;
+        });
+      }
+      setFilteredArr(newFilteredArr);
+    }
   }, [location]);
   const handleInputKeyUp = (ev) => {
     if (ev.code === "Enter") {
@@ -35,6 +49,16 @@ const QParamsPageFilter = () => {
   };
   const handleInputChange = (ev) => {
     setFilterInput(ev.target.value);
+  };
+  const handleSortASCClick = () => {
+    let qParmas = new URLSearchParams(location.search);
+    qParmas.set("sort", "asc");
+    history.push(`/qparamsfilter?${qParmas.toString()}`);
+  };
+  const handleSortDESCClick = () => {
+    let qParmas = new URLSearchParams(location.search);
+    qParmas.set("sort", "desc");
+    history.push(`/qparamsfilter?${qParmas.toString()}`);
   };
   return (
     <Fragment>
@@ -53,7 +77,22 @@ const QParamsPageFilter = () => {
           value={filterInput}
         />
       </div>
-
+      <div>
+        <button
+          type="button"
+          className="btn btn-info"
+          onClick={handleSortASCClick}
+        >
+          ↑
+        </button>
+        <button
+          type="button"
+          className="btn btn-info"
+          onClick={handleSortDESCClick}
+        >
+          ↓
+        </button>
+      </div>
       {filteredArr.map((item, idx) => {
         return <h1 key={idx}>{item}</h1>;
       })}
