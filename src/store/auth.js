@@ -1,9 +1,11 @@
+import { faGaugeSimpleMed } from "@fortawesome/free-solid-svg-icons";
 import { createSlice } from "@reduxjs/toolkit";
 
 //create variable that we want redux to store for us
 //this object configure the redux "state"
 const initialAuthState = {
   loggedIn: false,
+  isAdmin: false,
   userData: null,
   userInfo: null,
 };
@@ -23,6 +25,8 @@ const authSlice = createSlice({
     login(state, action) {
       state.loggedIn = true;
       // better to verify the payload
+      console.log(action.payload);
+      state.isAdmin = action.payload.isAdmin;
       state.userData = action.payload;
     },
     /*

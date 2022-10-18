@@ -47,6 +47,10 @@ let bizLinks = [
     label: "Panel",
     url: "/panelpage",
   },
+  {
+    label: "admin",
+    url: "/adminonly",
+  },
 ];
 
 const NavBarComponent = () => {

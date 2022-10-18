@@ -26,6 +26,8 @@ import AuthGuardRoute from "./components/AuthGuardRoute";
 import QParamsPage from "./pages/QParamsPage";
 import QParamsPageFilter from "./pages/QParamsPageFilter";
 import MyQParamsPage from "./pages/MyQParamsPage";
+import AdminOnlyPage from "./pages/AdminOnlyPage";
+import AdminGuardRoute from "./components/AdminGuardRoute";
 
 const App = () => {
   // const [tf, setTf] = useState(true);
@@ -62,6 +64,7 @@ const App = () => {
           path="/editbizcard/:id"
           component={EditBizCardPage}
         ></AuthGuardRoute>
+        <AdminGuardRoute path="/adminonly" component={AdminOnlyPage} />
         <Route path="/pages" component={RouteP1Page}></Route>
         <Route path="/pages/p2" component={RouteP2Page}></Route>
         <Route path="/qparams" component={QParamsPage}></Route>
