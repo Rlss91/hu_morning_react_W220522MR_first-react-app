@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { useDispatch } from "react-redux";
@@ -16,9 +16,14 @@ const LoginPage = () => {
     email: "",
     password: "",
   }); //init state
+  const emailRef = useRef();
   const dispatch = useDispatch();
   const history = useHistory();
   const autoLoginFunction = useAutoLogin();
+  useEffect(() => {
+    console.log("emailRef", emailRef);
+    emailRef.current.focus();
+  }, []);
   const handleUserInputChange = (ev) => {
     let newUserInput = JSON.parse(JSON.stringify(userInput)); //deep copy
     newUserInput[ev.target.id] = ev.target.value; //set new value dynamically
@@ -61,7 +66,6 @@ const LoginPage = () => {
       });
       return;
     }
-
     axios
       .post("/users/login", userInput)
       .then(async (res) => {
@@ -97,6 +101,7 @@ const LoginPage = () => {
           value={userInput.email}
           onChange={handleUserInputChange}
           onInvalid={handleEmailInputInvalid}
+          ref={emailRef}
         />
         <label htmlFor="email">Email address</label>
       </div>
