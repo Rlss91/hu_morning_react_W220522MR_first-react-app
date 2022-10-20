@@ -2,8 +2,8 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import jwt_decode from "jwt-decode";
 
-import autoLogin from "../services/autoLogin";
-import { authActions } from "../store/auth";
+import autoLogin from "services/autoLogin";
+import { authActions } from "store/auth";
 const useAutoLogin = () => {
   const dispatch = useDispatch();
   const autoLoginFunction = async (token) => {

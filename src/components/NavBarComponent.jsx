@@ -1,8 +1,8 @@
 import { Fragment } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-import NavBarLinkPartial from "../partial/NavBarLinkPartial";
-import { authActions } from "../store/auth";
+import NavBarLinkPartial from "partial/NavBarLinkPartial";
+import { authActions } from "store/auth";
 
 let links = [
   {
