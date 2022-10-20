@@ -28,23 +28,27 @@ import QParamsPageFilter from "./pages/QParamsPageFilter";
 import MyQParamsPage from "./pages/MyQParamsPage";
 import AdminOnlyPage from "./pages/AdminOnlyPage";
 import AdminGuardRoute from "./components/AdminGuardRoute";
+import updateUserInfo from "./services/updateUserInfo.js";
+import useAutoLogin from "./hooks/useAutoLogin";
 
 const App = () => {
   // const [tf, setTf] = useState(true);
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
+  useAutoLogin();
   useEffect(() => {
-    (async () => {
-      try {
-        let { data } = await autoLogin();
-        let dataFromToken = jwt_decode(localStorage.getItem("token"));
-        dispatch(authActions.login(dataFromToken));
-        if (data) {
-          dispatch(authActions.updateUserInfo(data));
-        }
-      } catch (err) {
-        console.log("you not logged in");
-      }
-    })();
+    // updateUserInfo();
+    // (async () => {
+    //   try {
+    //     let { data } = await autoLogin();
+    //     let dataFromToken = jwt_decode(localStorage.getItem("token"));
+    //     if (data) {
+    //       dispatch(authActions.login(dataFromToken));
+    //       dispatch(authActions.updateUserInfo(data));
+    //     }
+    //   } catch (err) {
+    //     console.log("you not logged in");
+    //   }
+    // })();
   }, []);
   return (
     <div className="container">

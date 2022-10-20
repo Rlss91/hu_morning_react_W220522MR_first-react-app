@@ -7,6 +7,7 @@ import jwt_decode from "jwt-decode";
 // import Joi from "joi-browser";
 import validate from "../validation/validation";
 import loginSchema from "../validation/login.validation";
+import autoLogin from "../services/autoLogin";
 
 const LoginPage = () => {
   const [userInput, setUserInput] = useState({
@@ -59,21 +60,17 @@ const LoginPage = () => {
 
     axios
       .post("/users/login", userInput)
-      .then((res) => {
+      .then(async (res) => {
         console.log("data", res.data);
         console.log("jwt_decode", jwt_decode(res.data.token));
         localStorage.setItem("token", res.data.token);
-        dispatch(authActions.login(jwt_decode(res.data.token)));
-        //redirect to panel
-        toast("🦄 Wow so easy!", {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
+        try {
+          let { data } = await autoLogin();
+          if (data) {
+            dispatch(authActions.login(jwt_decode(res.data.token)));
+            dispatch(authActions.updateUserInfo(data));
+          }
+        } catch (err) {}
       })
       .catch((err) => {
         console.log("err", err);
