@@ -6,7 +6,6 @@ const SideEffectPage = () => {
   useEffect(() => {
     intervalId = setInterval(() => {
       setTime(Date.now());
-      console.log("time", time);
     }, 1000);
     return () => {
       /*

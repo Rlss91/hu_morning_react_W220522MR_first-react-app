@@ -16,7 +16,7 @@ import store from "./store/index";
 import { BrowserRouter } from "react-router-dom";
 /* config axios */
 axios.defaults.baseURL = `${process.env.REACT_APP_DOMAIN}/api`;
-console.log(process.env.REACT_APP_DOMAIN);
+
 axios.interceptors.request.use((config) => {
   const token = localStorage.getItem("token");
   if (token) {

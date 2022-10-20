@@ -13,7 +13,7 @@
 //       dispatch(authActions.updateUserInfo(data));
 //     }
 //   } catch (err) {
-//     console.log("you not logged in");
+//     //you not logged in
 //   }
 // };
 // export default updateUserInfo;

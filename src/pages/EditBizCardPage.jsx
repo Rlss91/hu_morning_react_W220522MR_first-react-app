@@ -25,7 +25,7 @@ const EditBizCardPage = () => {
           url: data.image.url,
         });
       } catch (err) {
-        console.log("axios err", err);
+        // axios err
       }
     })();
   }, []);
@@ -47,7 +47,7 @@ const EditBizCardPage = () => {
         alt: bizCardData.title,
       });
     } catch (err) {
-      console.log("axios put err", err);
+      // axios put err
     }
   };
 

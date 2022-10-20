@@ -23,8 +23,6 @@ const QParamsPageFilter = () => {
       let regex = new RegExp(filter, "i");
       newFilteredArr = JSON.parse(JSON.stringify(originalArr));
       newFilteredArr = newFilteredArr.filter((item) => regex.test(item));
-      // setFilteredArr(newFilteredArr);
-      // console.log("filteredArr (state) after set", filteredArr);
       if (filter !== filterInput) {
         setFilterInput(filter);
       }
@@ -33,7 +31,6 @@ const QParamsPageFilter = () => {
       if (!newFilteredArr) {
         newFilteredArr = JSON.parse(JSON.stringify(filteredArr));
       }
-      // let newFilteredArr = JSON.parse(JSON.stringify(filteredArr));
       if (qParmas.get("sort") === "asc") {
         newFilteredArr.sort();
       }

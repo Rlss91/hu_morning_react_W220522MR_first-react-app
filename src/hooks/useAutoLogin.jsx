@@ -17,7 +17,7 @@ const useAutoLogin = () => {
         return true;
       }
     } catch (err) {
-      console.log("you not logged in");
+      // you not logged in
       return false; //not token
     }
   };

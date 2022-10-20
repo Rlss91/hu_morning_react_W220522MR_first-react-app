@@ -1,13 +1,9 @@
 import { useState, useRef, useEffect } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
-import { useDispatch } from "react-redux";
-import { authActions } from "../store/auth";
-import jwt_decode from "jwt-decode";
 // import Joi from "joi-browser";
 import validate from "../validation/validation";
 import loginSchema from "../validation/login.validation";
-import autoLogin from "../services/autoLogin";
 import useAutoLogin from "../hooks/useAutoLogin";
 import { useHistory } from "react-router-dom";
 
@@ -17,11 +13,9 @@ const LoginPage = () => {
     password: "",
   }); //init state
   const emailRef = useRef();
-  const dispatch = useDispatch();
   const history = useHistory();
   const autoLoginFunction = useAutoLogin();
   useEffect(() => {
-    console.log("emailRef", emailRef);
     emailRef.current.focus();
   }, []);
   const handleUserInputChange = (ev) => {
@@ -40,7 +34,6 @@ const LoginPage = () => {
     ev.preventDefault();
     const { error } = validate(userInput, loginSchema);
     if (error) {
-      // console.log({ error });
       let errorMsgs = "";
       for (let errorItem of error.details) {
         switch (errorItem.type) {
@@ -74,7 +67,6 @@ const LoginPage = () => {
         history.push("/");
       })
       .catch((err) => {
-        console.log("err", err);
         toast.error("😭 Something went wrong", {
           position: "top-right",
           autoClose: 5000,

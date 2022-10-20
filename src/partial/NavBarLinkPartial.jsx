@@ -21,8 +21,6 @@ export default NavBarLinkPartial;
 //         className="nav-link"
 //         to={link}
 //         isActive={(match, location) => {
-//           // console.log("match", match);
-//           // console.log("location", location);
 //           if (match === null) {
 //             return false;
 //           }

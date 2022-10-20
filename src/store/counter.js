@@ -15,7 +15,6 @@ const counterSlice = createSlice({
       state.counter = state.counter - 1;
     },
     addNumber(state, action) {
-      // console.log("action", action);
       state.counter += +action.payload;
     },
   },

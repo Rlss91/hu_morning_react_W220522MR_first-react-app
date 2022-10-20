@@ -1,7 +1,9 @@
 import { Fragment, useState } from "react";
 import axios from "axios";
+import { useHistory } from "react-router-dom";
 
 const RegisterPage = () => {
+  const history = useHistory();
   const [userInput, setUserInput] = useState({
     nameInput: "",
     emailInput: "",
@@ -17,7 +19,6 @@ const RegisterPage = () => {
   };
 
   const handleCheckBoxInputChange = (ev) => {
-    // console.log("ev", ev);
     let newUserInput = JSON.parse(JSON.stringify(userInput));
     if (newUserInput.hasOwnProperty(ev.target.id)) {
       newUserInput[ev.target.id] = ev.target.checked;
@@ -34,10 +35,10 @@ const RegisterPage = () => {
         biz: userInput.bizInput,
       })
       .then((res) => {
-        console.log("res", res);
+        history.push("/login");
       })
       .catch((err) => {
-        console.log("err from axios", err);
+        //err from axios
       });
   };
 

@@ -3,7 +3,7 @@ import { Route, Redirect } from "react-router-dom";
 
 const AdminGuardRoute = ({ component: Page, ...rest }) => {
   const isAdmin = useSelector((state) => state.auth.isAdmin);
-  console.log({ isAdmin });
+
   return (
     <Route
       {...rest}
