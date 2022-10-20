@@ -8,6 +8,8 @@ import jwt_decode from "jwt-decode";
 import validate from "../validation/validation";
 import loginSchema from "../validation/login.validation";
 import autoLogin from "../services/autoLogin";
+import useAutoLogin from "../hooks/useAutoLogin";
+import { useHistory } from "react-router-dom";
 
 const LoginPage = () => {
   const [userInput, setUserInput] = useState({
@@ -15,6 +17,8 @@ const LoginPage = () => {
     password: "",
   }); //init state
   const dispatch = useDispatch();
+  const history = useHistory();
+  const autoLoginFunction = useAutoLogin();
   const handleUserInputChange = (ev) => {
     let newUserInput = JSON.parse(JSON.stringify(userInput)); //deep copy
     newUserInput[ev.target.id] = ev.target.value; //set new value dynamically
@@ -61,16 +65,9 @@ const LoginPage = () => {
     axios
       .post("/users/login", userInput)
       .then(async (res) => {
-        console.log("data", res.data);
-        console.log("jwt_decode", jwt_decode(res.data.token));
         localStorage.setItem("token", res.data.token);
-        try {
-          let { data } = await autoLogin();
-          if (data) {
-            dispatch(authActions.login(jwt_decode(res.data.token)));
-            dispatch(authActions.updateUserInfo(data));
-          }
-        } catch (err) {}
+        autoLoginFunction(res.data.token);
+        history.push("/");
       })
       .catch((err) => {
         console.log("err", err);

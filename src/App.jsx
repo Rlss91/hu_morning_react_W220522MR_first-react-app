@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import "./App.scss";
 import { ToastContainer } from "react-toastify";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { authActions } from "./store/auth";
 import jwt_decode from "jwt-decode";
 // import ShalomOlam, { f1, f2, f3 } from "./components/HelloWorld";
@@ -14,7 +14,7 @@ import SideEffectPage from "./pages/SideEffect";
 import NavBarComponent from "./components/NavBarComponent";
 import TkReduxPage1 from "./pages/TKRedux/TkReduxPage1";
 import TkReduxPage2 from "./pages/TKRedux/TkReduxPage2";
-import autoLogin from "./services/autoLogin";
+
 import HomePage from "./pages/HomePage";
 import { Route, Switch } from "react-router-dom";
 import RouteP1Page from "./pages/RouteP1Page";
@@ -32,59 +32,61 @@ import updateUserInfo from "./services/updateUserInfo.js";
 import useAutoLogin from "./hooks/useAutoLogin";
 
 const App = () => {
-  // const [tf, setTf] = useState(true);
-  // const dispatch = useDispatch();
-  useAutoLogin();
+  const autoLoginFunction = useAutoLogin();
+  const loggedIn = useSelector((state) => state.auth.loggedIn);
+  const [tryToLogin, setTryToLogin] = useState(true);
+  /*
+    tryToLogin - ממתין לאימות
+  */
   useEffect(() => {
-    // updateUserInfo();
-    // (async () => {
-    //   try {
-    //     let { data } = await autoLogin();
-    //     let dataFromToken = jwt_decode(localStorage.getItem("token"));
-    //     if (data) {
-    //       dispatch(authActions.login(dataFromToken));
-    //       dispatch(authActions.updateUserInfo(data));
-    //     }
-    //   } catch (err) {
-    //     console.log("you not logged in");
-    //   }
-    // })();
+    (async () => {
+      let status = await autoLoginFunction(localStorage.getItem("token"));
+      if (status === false) {
+        setTryToLogin(false); //להפסיק להמתין
+      }
+    })();
   }, []);
+  useEffect(() => {
+    /*
+      if 
+      the login proccess succesd
+      and
+      im wating for login proccess to end
+      then
+      stop wating
+    */
+    if (loggedIn === true && tryToLogin === true) {
+      setTryToLogin(false); //להפסיק להמתין
+    }
+  }, [loggedIn]);
+
   return (
     <div className="container">
       <NavBarComponent />
       <ToastContainer />
-      <Switch>
-        <Route path="/" exact component={HomePage}></Route>
-        <Route path="/login" component={LoginPage}></Route>
-        <Route path="/register" component={RegisterPage}></Route>
-        {/* <Route path="/panelpage" component={PanelPage}></Route> */}
-        <AuthGuardRoute
-          path="/panelpage"
-          component={PanelPage}
-        ></AuthGuardRoute>
-        <Route path="/moreinfo/:id" component={MoreInfoBizCardPage}></Route>
-        <AuthGuardRoute
-          path="/editbizcard/:id"
-          component={EditBizCardPage}
-        ></AuthGuardRoute>
-        <AdminGuardRoute path="/adminonly" component={AdminOnlyPage} />
-        <Route path="/pages" component={RouteP1Page}></Route>
-        <Route path="/pages/p2" component={RouteP2Page}></Route>
-        <Route path="/qparams" component={QParamsPage}></Route>
-        <Route path="/qparamsfilter" component={QParamsPageFilter} />
-        <Route path="/myqparams" component={MyQParamsPage}></Route>
-        <Route path="*" component={NotFoundPage}></Route>
-      </Switch>
-      {/* <HelloWorldComponent /> */}
-      {/* <RegisterPage /> */}
-      {/* <LoginPage /> */}
-      {/* <ConditionPage /> */}
-      {/* <PanelPage /> */}
-      {/* <TkReduxPage1 /> */}
-      {/* <TkReduxPage2 /> */}
-      {/* <button onClick={(ev) => setTf(!tf)}>toggle timer</button>
-      {tf && <SideEffectPage />} */}
+      {!tryToLogin && (
+        <Switch>
+          <Route path="/" exact component={HomePage}></Route>
+          <Route path="/login" component={LoginPage}></Route>
+          <Route path="/register" component={RegisterPage}></Route>
+          <AuthGuardRoute
+            path="/panelpage"
+            component={PanelPage}
+          ></AuthGuardRoute>
+          <Route path="/moreinfo/:id" component={MoreInfoBizCardPage}></Route>
+          <AuthGuardRoute
+            path="/editbizcard/:id"
+            component={EditBizCardPage}
+          ></AuthGuardRoute>
+          <AdminGuardRoute path="/adminonly" component={AdminOnlyPage} />
+          <Route path="/pages" component={RouteP1Page}></Route>
+          <Route path="/pages/p2" component={RouteP2Page}></Route>
+          <Route path="/qparams" component={QParamsPage}></Route>
+          <Route path="/qparamsfilter" component={QParamsPageFilter} />
+          <Route path="/myqparams" component={MyQParamsPage}></Route>
+          <Route path="*" component={NotFoundPage}></Route>
+        </Switch>
+      )}
     </div>
   );
 };
