@@ -3,6 +3,9 @@ import { useDispatch } from "react-redux";
 import { counterActions } from "../../store/counter";
 const TkReduxPage1 = () => {
   const [numberInput, setNumberInput] = useState("0");
+  //const [counter, setCounter] = useState(0)
+  //!useSelector
+  //*setCounter = dispatch(counterActions.add1())
   const dispatch = useDispatch();
   const handleAdd1Click = () => {
     dispatch(counterActions.add1());
