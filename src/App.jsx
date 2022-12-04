@@ -30,6 +30,8 @@ import AdminOnlyPage from "./pages/AdminOnlyPage";
 import AdminGuardRoute from "./components/AdminGuardRoute";
 import updateUserInfo from "./services/updateUserInfo.js";
 import useAutoLogin from "./hooks/useAutoLogin";
+import ForgotPassword from "pages/ForgotPassword.page";
+import ResetPasswordPage from "pages/ResetPasswordPage";
 
 const App = () => {
   const autoLoginFunction = useAutoLogin();
@@ -84,6 +86,8 @@ const App = () => {
           <Route path="/qparams" component={QParamsPage}></Route>
           <Route path="/qparamsfilter" component={QParamsPageFilter} />
           <Route path="/myqparams" component={MyQParamsPage}></Route>
+          <Route path="/forgotpassword" component={ForgotPassword}></Route>
+          <Route path="/resetpassword" component={ResetPasswordPage}></Route>
           <Route path="*" component={NotFoundPage}></Route>
         </Switch>
       )}
