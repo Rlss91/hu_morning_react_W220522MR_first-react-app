@@ -87,7 +87,10 @@ const App = () => {
           <Route path="/qparamsfilter" component={QParamsPageFilter} />
           <Route path="/myqparams" component={MyQParamsPage}></Route>
           <Route path="/forgotpassword" component={ForgotPassword}></Route>
-          <Route path="/resetpassword" component={ResetPasswordPage}></Route>
+          <Route
+            path="/resetpassword/:token"
+            component={ResetPasswordPage}
+          ></Route>
           <Route path="*" component={NotFoundPage}></Route>
         </Switch>
       )}
